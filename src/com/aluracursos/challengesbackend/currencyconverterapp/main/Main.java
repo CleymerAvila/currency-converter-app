@@ -33,112 +33,31 @@ public class Main {
 
             switch (userOption){
                 case 1:
-                    from = "USD";
-                    to = "ARS";
-                    System.out.println("Ingresa la cantidad que desea convertir");
-                    amount = sc.nextDouble();
-                    conversion = currencyConverter.evaluateExchange(from,to, amount);
-
-                    System.out.printf("El valor %.2f [%s] corresponde al valor final de =>>> %.2f [%s]"
-                    , amount, from, conversion.conversion_result(), conversion.target_code());
-
-                    conversions.add(conversion);
+                    convertFromTo("USD", "ARS");
                     break;
                 case 2:
-                    from = "ARS";
-                    to = "USD";
-                    System.out.println("Ingresa la cantidad que desea convertir");
-                    amount = sc.nextDouble();
-                    conversion = currencyConverter.evaluateExchange(from,to, amount);
-
-                    System.out.printf("El valor %.2f [%s] corresponde al valor final de =>>> %.2f [%s]"
-                            , amount, from, conversion.conversion_result(), conversion.target_code());
-
-                    conversions.add(conversion);
+                    convertFromTo("ARS", "USD");
                     break;
                 case 3:
-                    from = "USD";
-                    to = "BRL";
-                    System.out.println("Ingresa la cantidad que desea convertir");
-                    amount = sc.nextDouble();
-                    conversion = currencyConverter.evaluateExchange(from,to, amount);
-
-                    System.out.printf("El valor %.2f [%s] corresponde al valor final de =>>> %.2f [%s]"
-                            , amount, from, conversion.conversion_result(), conversion.target_code());
-
-                    conversions.add(conversion);
+                    convertFromTo("USD", "BRL");
                     break;
                 case 4:
-                    from = "BRL";
-                    to = "USD";
-                    System.out.println("Ingresa la cantidad que desea convertir");
-                    amount = sc.nextDouble();
-                    conversion = currencyConverter.evaluateExchange(from,to, amount);
-
-                    System.out.printf("El valor %.2f [%s] corresponde al valor final de =>>> %.2f [%s]"
-                            , amount, from, conversion.conversion_result(), conversion.target_code());
-
-                    conversions.add(conversion);
+                    convertFromTo("BRL", "USD");
                     break;
                 case 5:
-                    from = "USD";
-                    to = "COP";
-                    System.out.println("Ingresa la cantidad que desea convertir");
-                    amount = sc.nextDouble();
-                    conversion = currencyConverter.evaluateExchange(from,to, amount);
-
-                    System.out.printf("El valor %.2f [%s] corresponde al valor final de =>>> %.2f [%s]"
-                            , amount, from, conversion.conversion_result(), conversion.target_code());
-
-                    conversions.add(conversion);
+                    convertFromTo("USD", "COP");
                     break;
                 case 6:
-                    from = "COP";
-                    to = "USD";
-                    System.out.println("Ingresa la cantidad que desea convertir");
-                    amount = sc.nextDouble();
-                    conversion = currencyConverter.evaluateExchange(from,to, amount);
-
-                    System.out.printf("El valor %.2f [%s] corresponde al valor final de =>>> %.2f [%s]"
-                            , amount, from, conversion.conversion_result(), conversion.target_code());
-
-                    conversions.add(conversion);
+                    convertFromTo("COP", "USD");
                     break;
                 case 7:
-                    from = "USD";
-                    to = "EUR";
-                    System.out.println("Ingresa la cantidad que desea convertir");
-                    amount = sc.nextDouble();
-                    conversion = currencyConverter.evaluateExchange(from,to, amount);
-
-                    System.out.printf("El valor %.2f [%s] corresponde al valor final de =>>> %.2f [%s]"
-                            , amount, from, conversion.conversion_result(), conversion.target_code());
-
-                    conversions.add(conversion);
+                    convertFromTo("USD", "EUR");
                     break;
                 case 8:
-                    from = "EUR";
-                    to = "USD";
-                    System.out.println("Ingresa la cantidad que desea convertir");
-                    amount = sc.nextDouble();
-                    conversion = currencyConverter.evaluateExchange(from,to, amount);
-
-                    System.out.printf("El valor %.2f [%s] corresponde al valor final de =>>> %.2f [%s]"
-                            , amount, from, conversion.conversion_result(), conversion.target_code());
-
-                    conversions.add(conversion);
+                    convertFromTo("EUR", "USD");
                     break;
                 case 9:
-                    from = "EUR";
-                    to = "COP";
-                    System.out.println("Ingresa la cantidad que desea convertir");
-                    amount = sc.nextDouble();
-                    conversion = currencyConverter.evaluateExchange(from,to, amount);
-
-                    System.out.printf("El valor %.2f [%s] corresponde al valor final de =>>> %.2f [%s]"
-                            , amount, from, conversion.conversion_result(), conversion.target_code());
-
-                    conversions.add(conversion);
+                    convertFromTo("EUR", "COP");
                     break;
                 case 10:
                     System.out.println("\nHa salido de la Aplicacion!");
@@ -150,7 +69,7 @@ public class Main {
             }
         } while (userOption != 10);
 
-        FileWriter writer = new FileWriter("conversion.json");
+        FileWriter writer = new FileWriter("conversions.json");
         writer.write(gson.toJson(conversions));
         writer.close();
 
@@ -171,5 +90,16 @@ public class Main {
         System.out.println("10) Salir de la aplicación");
         System.out.println("\nElija una opción valida");
         System.out.println("****************************************************");
+    }
+
+    public static void convertFromTo(String from, String to){
+        System.out.println("Ingresa la cantidad que desea convertir");
+        amount = sc.nextDouble();
+        conversion = currencyConverter.evaluateExchange(from,to, amount);
+
+        System.out.printf("El valor %.2f [%s] corresponde al valor final de =>>> %.2f [%s]"
+                , amount, from, conversion.conversion_result(), conversion.target_code());
+
+        conversions.add(conversion);
     }
 }
